@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class=box id=box>
+
+        <hr>
+        <label class="label">Выбери тип задания:</label>
+        <select id = "select" class="select">
+            <option value = "SelectStandart"> Стандартные задания </option>
+            <option value = "SelectFavorite">Избранные задания </option>
+            <option value = "SelectExpress"> Срочное дело </option>
+        </select>
+        <hr>
+
+        <div class=head>
+          <input type=button value="Добавить задание" id=btn class=btn>
+          <input type=text id="task"  placeholder="Введи задание..." class=text>
+        </div>
+        <hr>  
+    </div>
+
+    <div class="mainBox">
+        <div class = "line" id = "line" style="left: -800px;">
+            <div class = "favoriteTaskBox" id = "favoriteTask"></div>
+            <div class = "standartTaskBox" id = "standartTask"></div>
+            <div class = "expressTaskBox" id = "expressTask"></div>
+        </div>
+
+        <div class = "btnBox">
+                <button class = "favorite" id="favorite">&#10031</button>
+                <button class = "express" id="express">	&#128293</button>
+                <button class = "standart" id="standart">S</button>
+            </div>
+
+    </div>
+</body>
+    <script src="js.js"></script>
+</html>
