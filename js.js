@@ -2,6 +2,7 @@ const btn = document.getElementById('btn');
 let box = document.getElementById('box');
 var select = document.getElementById('select');
 var task = document.getElementById('task');
+var line = document.getElementById ('line')
 
 var standartTaskBox = document.getElementById('standartTask');
 var favoriteTaskBox = document.getElementById('favoriteTask');
@@ -17,7 +18,7 @@ function selectVal (option, cleatElem, arrList) {
         task.value = '';
         paintValueElem (cleatElem, arrList);
     }
-}
+};
 
 btn.addEventListener ('click', () => {
     if ((btn.click) && (task.value)){
@@ -29,7 +30,6 @@ btn.addEventListener ('click', () => {
 
 function paintValueElem(cleatElem, arrList) {
     cleatElem.innerHTML = '';
-
     for (let i = 0; i < arrList.length; i++) {
         
         let newDiv = document.createElement('div');
@@ -50,35 +50,19 @@ function paintValueElem(cleatElem, arrList) {
             paintValueElem(cleatElem, arrList)
         })
     }
-}
+};
 
 select.addEventListener('change', (event)=>{
     if(select.value === 'SelectStandart'){
-        slideToStandart();
+        slider(800)
     }else if (select.value === 'SelectFavorite'){
-        slideToFavorite();
+        slider()
     }else if (select.value === 'SelectExpress'){
-        slideToExpress();
+        slider(1600)
     }
-})
+});
 
-function slideToFavorite (){
-  var line = document.getElementById ('line')
-  var left=0;
-  left = left;
-  line.style.left = left +'px';
-}
-
-function slideToExpress (){
-  var line = document.getElementById ('line')
-  var left=0;
-  left = left - 1600;
-  line.style.left = left +'px';
-}
-
-function slideToStandart (){
-  var line = document.getElementById ('line')
-  var left=0;
-  left = left - 800;
-  line.style.left = left +'px';
-}
+function slider (toFrom = 0) {
+    var left=0;
+    line.style.left = left - toFrom +'px';
+};
