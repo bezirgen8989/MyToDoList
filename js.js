@@ -1,231 +1,67 @@
-const btn = document.getElementById ('btn');
-let box = document.getElementById ('box');
-var select = document.getElementById ('select');
+const btn = document.getElementById('btn');
+let box = document.getElementById('box');
+var select = document.getElementById('select');
 var task = document.getElementById('task');
 
-var standartTaskBox = document.getElementById ('standartTask');
-var favoriteTaskBox =  document.getElementById ('favoriteTask'); 
-var expressTaskBox = document.getElementById ('expressTask');
+var standartTaskBox = document.getElementById('standartTask');
+var favoriteTaskBox = document.getElementById('favoriteTask');
+var expressTaskBox = document.getElementById('expressTask');
 
 var standartList = [];
 var favoriteList = [];
 var expressList = [];
 
-btn.addEventListener ('click', () => {
-    if ((btn.click = true) && (task.value)){
-        if (select.value == 'SelectStandart'){
-            standartList.push (task.value);
-            task.value = '';
-            upgradeView ();
-        }
-        if (select.value == 'SelectFavorite'){
-            favoriteList.push (task.value);
-            task.value = '';
-            upgradeView ();
-        }
-        if (select.value == 'SelectExpress'){
-            expressList.push (task.value);
-            task.value = '';
-            upgradeView ();
-        }
-        
+function selectVal (option, cleatElem, arrList) {
+    if (select.value == option){
+        arrList.push (task.value);
+        task.value = '';
+        paintValueElem (cleatElem, arrList);
     }
-})
-
-task.addEventListener ('keydown', event => {
-    if ((event.key === 'enter' || event.keyCode === 13) && (task.value)){
-        if (select.value == 'SelectStandart'){
-            standartList.push (task.value);
-            task.value = '';
-            upgradeView ();
-        }
-        if (select.value == 'SelectFavorite'){
-            favoriteList.push (task.value);
-            task.value = '';
-            upgradeView ();
-        }
-        if (select.value == 'SelectExpress'){
-            expressList.push (task.value);
-            task.value = '';
-            upgradeView ();
-        }
-        
-    }
-})
-
-function upgradeView () {
-    standartTaskBox.innerHTML='';
-    favoriteTaskBox.innerHTML=''; 
-    expressTaskBox.innerHTML=''; 
-
-    for (var index=0; index < standartList.length; index++){
-        let standartItems = standartList[index];
-        
-        
-        const list = document.createElement ('div');
-        list.className = 'list';
-
-        list.innerText = standartItems;
-        
-        standartTaskBox.append(list);
-
-        const delButton = document.createElement  ('input')
-        delButton.type = 'button'
-        delButton.className = 'taskBtn'
-        delButton.value = 'Удалить'
-        list.append(delButton)
-
-        delButton.addEventListener('click', () => {
-            standartList = standartList.filter(delToDoList => delToDoList !== standartItems);
-            upgradeView ()
-        })
-
-        const chbox = document.createElement ('input')
-        list.append(chbox)
-        chbox.type = 'checkbox'
-        chbox.className = 'chbox'
-        chbox.addEventListener('click', ()=> {
-            if(chbox.checked == false) {
-                chbox.checked = true;
-                list.style.textDecoration = "line-through";
-                list.style.fontStyle = "italic";
-                list.style.color = "gray";
-            }else {
-                chbox.checked = false;
-                list.style.textDecoration= "none";
-                list.style.fontStyle = "normal";
-                list.style.color = "black";
-            }
-        })
-        
-        list.addEventListener ('click', () => {
-            if(chbox.checked == false) {
-                chbox.checked = true;
-                list.style.textDecoration = "line-through";
-                list.style.fontStyle = "italic";
-                list.style.color = "gray";
-            }else {
-                chbox.checked = false;
-                list.style.textDecoration= "none";
-                list.style.fontStyle = "normal";
-                list.style.color = "black";
-            }
-        })
-    }
-
-    for (var index=0; index < favoriteList.length; index++){
-        let favoriteItems = favoriteList[index];
-        
-        const list = document.createElement ('div');
-        list.className = 'list';
-
-        list.innerText = favoriteItems;
-        
-        favoriteTaskBox.append(list);
-        
-        const delButton = document.createElement  ('input')
-        delButton.type = 'button'
-        delButton.className = 'taskBtn'
-        delButton.value = 'Удалить'
-        list.append(delButton)
-
-        delButton.addEventListener('click', () => {
-            favoriteList = favoriteList.filter(delToDoList => delToDoList !== favoriteItems);
-            upgradeView ()
-        })
-
-        const chbox = document.createElement ('input')
-        list.append(chbox)
-        chbox.type = 'checkbox'
-        chbox.className = 'chbox'
-        chbox.addEventListener('click', ()=> {
-            if(chbox.checked == false) {
-                chbox.checked = true;
-                list.style.textDecoration = "line-through";
-                list.style.fontStyle = "italic";
-                list.style.color = "gray";
-            }else {
-                chbox.checked = false;
-                list.style.textDecoration= "none";
-                list.style.fontStyle = "normal";
-                list.style.color = "black";
-            }
-        })
-        
-        list.addEventListener ('click', () => {
-            if(chbox.checked == false) {
-                chbox.checked = true;
-                list.style.textDecoration = "line-through";
-                list.style.fontStyle = "italic";
-                list.style.color = "gray";
-            }else {
-                chbox.checked = false;
-                list.style.textDecoration= "none";
-                list.style.fontStyle = "normal";
-                list.style.color = "black";
-            }
-        })
-    }
-
-    for (var index=0; index < expressList.length; index++){
-        let expressItems = expressList[index];
-        
-        const list = document.createElement ('div');
-        list.className = 'list';
-
-        list.innerText = expressItems;
-        
-        expressTaskBox.append(list);
-        
-        const delButton = document.createElement  ('input')
-        delButton.type = 'button'
-        delButton.className = 'taskBtn'
-        delButton.value = 'Удалить'
-        list.append(delButton)
-
-        delButton.addEventListener('click', () => {
-            expressList = expressList.filter(delToDoList => delToDoList !== expressItems);
-            upgradeView ()
-        })
-
-        const chbox = document.createElement ('input')
-        list.append(chbox)
-        chbox.type = 'checkbox'
-        chbox.className = 'chbox'
-        chbox.addEventListener('click', ()=> {
-            if(chbox.checked == false) {
-                chbox.checked = true;
-                list.style.textDecoration = "line-through";
-                list.style.fontStyle = "italic";
-                list.style.color = "gray";
-            }else {
-                chbox.checked = false;
-                list.style.textDecoration= "none";
-                list.style.fontStyle = "normal";
-                list.style.color = "black";
-            }
-        })
-        
-        list.addEventListener ('click', () => {
-            if(chbox.checked == false) {
-                chbox.checked = true;
-                list.style.textDecoration = "line-through";
-                list.style.fontStyle = "italic";
-                list.style.color = "gray";
-            }else {
-                chbox.checked = false;
-                list.style.textDecoration= "none";
-                list.style.fontStyle = "normal";
-                list.style.color = "black";
-            }
-        })
-    }
-
 }
 
+btn.addEventListener ('click', () => {
+    if ((btn.click) && (task.value)){
+        selectVal('SelectStandart', standartTaskBox, standartList)
+        selectVal('SelectFavorite', favoriteTaskBox, favoriteList)
+        selectVal('SelectExpress', expressTaskBox, expressList)
+    }
+})
 
+function paintValueElem(cleatElem, arrList) {
+    cleatElem.innerHTML = '';
 
-document.getElementById('favorite').onclick=slideToFavorite;
+    for (let i = 0; i < arrList.length; i++) {
+        
+        let newDiv = document.createElement('div');
+        newDiv.textContent = arrList[i];
+
+        cleatElem.append(newDiv);
+
+        let newDelBtn = document.createElement('button');
+        newDiv.append(newDelBtn);
+        newDelBtn.textContent = 'Delete'
+
+        let newInputChBox = document.createElement('input');
+        newInputChBox.type = 'checkbox';
+        newDiv.append(newInputChBox);
+
+        newDelBtn.addEventListener('click', () => {
+            arrList = arrList.filter(delToDoList => delToDoList !== arrList[i]);
+            paintValueElem(cleatElem, arrList)
+        })
+    }
+}
+
+select.addEventListener('change', (event)=>{
+    if(select.value === 'SelectStandart'){
+        slideToStandart();
+    }else if (select.value === 'SelectFavorite'){
+        slideToFavorite();
+    }else if (select.value === 'SelectExpress'){
+        slideToExpress();
+    }
+})
+
 function slideToFavorite (){
   var line = document.getElementById ('line')
   var left=0;
@@ -233,7 +69,6 @@ function slideToFavorite (){
   line.style.left = left +'px';
 }
 
-document.getElementById('express').onclick=slideToExpress;
 function slideToExpress (){
   var line = document.getElementById ('line')
   var left=0;
@@ -241,7 +76,6 @@ function slideToExpress (){
   line.style.left = left +'px';
 }
 
-document.getElementById('standart').onclick=slideToStandart;
 function slideToStandart (){
   var line = document.getElementById ('line')
   var left=0;
