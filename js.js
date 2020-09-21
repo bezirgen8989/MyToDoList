@@ -2,7 +2,7 @@ const btn = document.getElementById('btn');
 let box = document.getElementById('box');
 var select = document.getElementById('select');
 var task = document.getElementById('task');
-var line = document.getElementById ('line')
+var line = document.getElementById('line')
 
 var standartTaskBox = document.getElementById('standartTask');
 var favoriteTaskBox = document.getElementById('favoriteTask');
@@ -12,16 +12,17 @@ var standartList = [];
 var favoriteList = [];
 var expressList = [];
 
-function selectVal (option, cleatElem, arrList) {
-    if (select.value == option){
-        arrList.push (task.value);
+function selectVal(option, cleatElem, arrList) {
+    if (select.value == option) {
+        arrList.push(task.value);
         task.value = '';
-        paintValueElem (cleatElem, arrList);
+        paintValueElem(cleatElem, arrList);
+        console.log(arrList)
     }
 };
 
-btn.addEventListener ('click', () => {
-    if ((btn.click) && (task.value)){
+btn.addEventListener('click', () => {
+    if ((btn.click) && (task.value)) {
         selectVal('SelectStandart', standartTaskBox, standartList)
         selectVal('SelectFavorite', favoriteTaskBox, favoriteList)
         selectVal('SelectExpress', expressTaskBox, expressList)
@@ -31,7 +32,7 @@ btn.addEventListener ('click', () => {
 function paintValueElem(cleatElem, arrList) {
     cleatElem.innerHTML = '';
     for (let i = 0; i < arrList.length; i++) {
-        
+
         let newDiv = document.createElement('div');
         newDiv.textContent = arrList[i];
 
@@ -46,23 +47,24 @@ function paintValueElem(cleatElem, arrList) {
         newDiv.append(newInputChBox);
 
         newDelBtn.addEventListener('click', () => {
-            arrList = arrList.filter(delToDoList => delToDoList !== arrList[i]);
+            arrList.splice(i, 1)
+            console.log(arrList)
             paintValueElem(cleatElem, arrList)
         })
     }
 };
 
-select.addEventListener('change', (event)=>{
-    if(select.value === 'SelectStandart'){
+select.addEventListener('change', (event) => {
+    if (select.value === 'SelectStandart') {
         slider(800)
-    }else if (select.value === 'SelectFavorite'){
+    } else if (select.value === 'SelectFavorite') {
         slider()
-    }else if (select.value === 'SelectExpress'){
+    } else if (select.value === 'SelectExpress') {
         slider(1600)
     }
 });
 
-function slider (toFrom = 0) {
-    var left=0;
-    line.style.left = left - toFrom +'px';
+function slider(toFrom = 0) {
+    var left = 0;
+    line.style.left = left - toFrom + 'px';
 };
