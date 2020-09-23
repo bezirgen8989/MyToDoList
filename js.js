@@ -32,12 +32,9 @@ btn.addEventListener('click', () => {
 function paintValueElem(cleatElem, arrList) {
     cleatElem.innerHTML = '';
     for (let i = 0; i < arrList.length; i++) {
-
         let newDiv = document.createElement('div');
         newDiv.textContent = arrList[i];
-
         cleatElem.append(newDiv);
-
         let newDelBtn = document.createElement('button');
         newDiv.append(newDelBtn);
         newDelBtn.textContent = 'Delete'
